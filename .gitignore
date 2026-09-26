@@ -1,0 +1,17 @@
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+Thumbs.db
+
+# Test & build artifacts
+*.tgz
+test-*.tmp
+
+# Local IDE configs generated during tests
+.agents/
+.claude/
+.opencode/
+.vscode/skills/
+.github/copilot-instructions.md
