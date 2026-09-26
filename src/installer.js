@@ -7,10 +7,13 @@ import { AntigravityAdapter } from './adapters/antigravity.js';
 import { OpenCodeAdapter } from './adapters/opencode.js';
 import { VSCodeAdapter } from './adapters/vscode.js';
 
+import { compactor } from './compactor.js';
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const PACKAGE_ROOT = path.resolve(__dirname, '..');
 const SKILLS_DIR = path.join(PACKAGE_ROOT, 'skills');
+const BUNDLE_PATH = path.join(PACKAGE_ROOT, 'skills.bundle.json.gz');
 
 export function getAdapters() {
   return {
@@ -21,7 +24,21 @@ export function getAdapters() {
   };
 }
 
-export async function listSkills(skillsBaseDir = SKILLS_DIR) {
+export async function listSkills(skillsBaseDir = SKILLS_DIR, forceScan = false) {
+  if (!forceScan) {
+    try {
+      const compressed = await fs.readFile(BUNDLE_PATH);
+      const jsonStr = compactor.decompress(compressed);
+      const bundleData = JSON.parse(jsonStr);
+      const list = Object.values(bundleData);
+      if (list.length > 0) {
+        return list;
+      }
+    } catch {
+      // Fallback to directory scan
+    }
+  }
+
   const skills = [];
   const categories = ['backend', 'frontend'];
 

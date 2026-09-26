@@ -12,7 +12,7 @@ const PACKAGE_ROOT = path.resolve(__dirname, '..');
 async function run() {
   console.log(`${c.cyan}${c.bold}⚡ Compacting fullstack-skills with gzip compression...${c.reset}\n`);
 
-  const skills = await listSkills(path.join(PACKAGE_ROOT, 'skills'));
+  const skills = await listSkills(path.join(PACKAGE_ROOT, 'skills'), true);
   console.log(`Found ${c.bold}${skills.length}${c.reset} skills to bundle.\n`);
 
   const bundle = await compactor.createBundle(skills);

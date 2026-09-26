@@ -50,7 +50,25 @@ export class BaseAdapter {
 
     for (const skill of skills) {
       const targetSkillDir = path.join(destDir, skill.name);
-      await this.copyDir(skill.path, targetSkillDir, force);
+      await this.ensureDir(targetSkillDir);
+
+      if (skill.files) {
+        for (const [filename, fileContent] of Object.entries(skill.files)) {
+          const targetFilePath = path.join(targetSkillDir, filename);
+          if (!force) {
+            try {
+              await fs.access(targetFilePath);
+              continue;
+            } catch {
+              // proceed
+            }
+          }
+          await fs.writeFile(targetFilePath, fileContent, 'utf8');
+        }
+      } else if (skill.path) {
+        await this.copyDir(skill.path, targetSkillDir, force);
+      }
+
       installedSkills.push(skill.name);
     }
 

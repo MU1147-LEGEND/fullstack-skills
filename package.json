@@ -10,7 +10,7 @@
   "files": [
     "bin",
     "src",
-    "skills",
+    "skills.bundle.json.gz",
     "README.md",
     "LICENSE"
   ],
@@ -33,7 +33,8 @@
   "scripts": {
     "test": "node --test test/*.test.js",
     "start": "node bin/cli.js",
-    "compact": "node scripts/compact.js"
+    "compact": "node scripts/compact.js",
+    "prepack": "node scripts/compact.js"
   },
   "repository": {
     "type": "git",
