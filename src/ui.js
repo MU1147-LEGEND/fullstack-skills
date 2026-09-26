@@ -19,9 +19,9 @@ export const c = {
 };
 
 export const ui = {
-  banner() {
+  banner(version = '1.0.1') {
     console.log(`\n${c.cyan}${c.bold}================================================================${c.reset}`);
-    console.log(`${c.cyan}${c.bold}  ⚡ fullstack-skills ${c.reset}${c.dim}v1.0.0${c.reset}`);
+    console.log(`${c.cyan}${c.bold}  ⚡ fullstack-skills ${c.reset}${c.dim}v${version}${c.reset}`);
     console.log(`  ${c.white}Universal AI Skills for Claude Code, Antigravity, OpenCode & VS Code${c.reset}`);
     console.log(`${c.cyan}${c.bold}================================================================${c.reset}\n`);
   },

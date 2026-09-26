@@ -1,6 +1,6 @@
 {
   "name": "fullstack-skills",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Universal CLI installer for 20 premium Frontend & Backend AI skills across Claude Code, Antigravity, OpenCode, and VS Code",
   "type": "module",
   "main": "./src/index.js",

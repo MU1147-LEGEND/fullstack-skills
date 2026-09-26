@@ -24,7 +24,7 @@ test('cli: prints help with --help', async () => {
 test('cli: prints version with --version', async () => {
   const { stdout } = await execFileAsync(process.execPath, [CLI_PATH, '--version']);
   const clean = stripAnsi(stdout);
-  assert.match(clean, /fullstack-skills v1\.0\.0/);
+  assert.match(clean, /fullstack-skills v1\.\d+\.\d+/);
 });
 
 test('cli: lists all skills with list command', async () => {

@@ -54,8 +54,8 @@ function printHelp(version) {
   console.log(`  npx fullstack-skills install --editor all --scope project --yes\n`);
 }
 
-async function handleList() {
-  ui.banner();
+async function handleList(version) {
+  ui.banner(version);
   const skills = await listSkills();
 
   console.log(`${c.bold}${c.cyan}FRONTEND & UI/UX SKILLS (11):${c.reset}`);
@@ -99,11 +99,11 @@ async function main() {
   }
 
   if (args.list) {
-    await handleList();
+    await handleList(version);
     return;
   }
 
-  ui.banner();
+  ui.banner(version);
 
   let { editor, scope, bundle, yes, force } = args;
 

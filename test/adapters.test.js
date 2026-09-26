@@ -40,6 +40,7 @@ test('adapters: resolve destinations correctly', () => {
   assert.equal(agy.resolveDestination({ scope: 'project', projectDir: mockProject }), path.join(mockProject, '.agents', 'skills'));
 
   const opencode = new OpenCodeAdapter();
+  assert.equal(opencode.resolveDestination({ scope: 'global', homedir: mockHome }), path.join(mockHome, '.config', 'opencode', 'skills'));
   assert.equal(opencode.resolveDestination({ scope: 'project', projectDir: mockProject }), path.join(mockProject, '.opencode', 'skills'));
 
   const vscode = new VSCodeAdapter();
